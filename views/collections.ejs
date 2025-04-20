@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections - TOHFAB Fashion Designer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    /* Reset and base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    /* Container */
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: #500724; /* Pink-950 */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+        color: #be185d; /* Pink-700 */
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #db2777; /* Pink-600 */
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #be185d; /* Pink-700 */
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        color: #db2777; /* Pink-600 */
+        border: 1px solid #fbcfe8; /* Pink-200 */
+    }
+
+    .btn-outline:hover {
+        background-color: #fdf2f8; /* Pink-50 */
+    }
+
+    /* Header */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: white;
+        border-bottom: 1px solid #f3f4f6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 4rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #db2777; /* Pink-600 */
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+    }
+
+    nav a {
+        color: #500724; /* Pink-950 */
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+        color: #db2777; /* Pink-600 */
+    }
+
+    nav a.active {
+        color: #db2777; /* Pink-600 */
+        font-weight: 600;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* Mobile menu toggle */
+    /* Initially hide the navigation links for small screens */
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+
+    nav ul li {
+        margin-left: 20px;
+    }
+
+    .menu-toggle {
+        display: none;
+        font-size: 30px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Media query for mobile screens */
+    @media (max-width: 768px) {
+        nav ul {
+            display: none;  /* Hide the navigation links by default on small screens */
+            flex-direction: column;
+            position: absolute;
+            top: 60px;  /* Adjust as needed */
+            left: 0;
+            background-color: #fff;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 1;
+        }
+
+        nav ul.active {
+            display: flex;  /* Show the navigation links when 'active' class is added */
+        }
+
+        .menu-toggle {
+            display: block;  /* Show the menu toggle button on small screens */
+        }
+    }
+
+
+    /* Page banner */
+    .page-banner {
+        background-color: #fdf2f8; /* Pink-50 */
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('/photos/digital-art-style-illustration-fashion-designer (1).jpg') center/cover no-repeat;
+        opacity: 0.2;
+        z-index: 1;
+    }
+
+    .page-banner-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .page-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #db2777; /* Pink-600 */
+    }
+
+    .breadcrumbs {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        color: #be185d; /* Pink-700 */
+        margin-bottom: 1rem;
+    }
+
+    .breadcrumbs a {
+        color: #db2777; /* Pink-600 */
+    }
+
+    .breadcrumbs a:hover {
+        text-decoration: underline;
+    }
+
+    /* Collections section */
+    .collections-section {
+        padding: 5rem 0;
+    }
+
+    /* Filters */
+    .collections-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #fbcfe8; /* Pink-200 */
+    }
+
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-group label {
+        font-weight: 500;
+        color: #500724; /* Pink-950 */
+    }
+
+    .filter-select {
+        padding: 0.5rem 2rem 0.5rem 0.75rem;
+        border: 1px solid #fbcfe8; /* Pink-200 */
+        border-radius: 0.25rem;
+        background-color: white;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23db2777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.5rem center;
+        background-size: 16px 12px;
+        appearance: none;
+        font-size: 0.875rem;
+        color: #500724; /* Pink-950 */
+        cursor: pointer;
+    }
+
+    .filter-select:focus {
+        outline: none;
+        border-color: #f472b6; /* Pink-400 */
+        box-shadow: 0 0 0 3px rgba(249, 168, 212, 0.25); /* Pink-300 */
+    }
+
+    /* Products count */
+    .products-count {
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+        color: #be185d; /* Pink-700 */
+    }
+
+    /* Products grid */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .product-card {
+        background-color: white;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .product-image {
+        position: relative;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 150%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        background-color: #db2777; /* Pink-600 */
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        z-index: 10;
+    }
+
+    .product-actions {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 10;
+    }
+
+    .product-action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        background-color: white;
+        border-radius: 50%;
+        color: #db2777; /* Pink-600 */
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-action-btn:hover {
+        background-color: #db2777; /* Pink-600 */
+        color: white;
+    }
+
+    .product-info {
+        padding: 1.25rem;
+    }
+
+    .product-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #500724; /* Pink-950 */
+        margin-bottom: 0.25rem;
+        transition: color 0.3s ease;
+    }
+
+    .product-name:hover {
+        color: #db2777; /* Pink-600 */
+    }
+
+    .product-category {
+        font-size: 0.875rem;
+        color: #be185d; /* Pink-700 */
+        margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+        font-weight: 600;
+        color: #db2777; /* Pink-600 */
+    }
+
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 3rem;
+    }
+
+    .pagination-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #fbcfe8; /* Pink-200 */
+        background-color: white;
+        border-radius: 0.25rem;
+        color: #db2777; /* Pink-600 */
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+        background-color: #fdf2f8; /* Pink-50 */
+    }
+
+    .pagination-btn:disabled {
+        color: #d1d5db;
+        border-color: #e5e7eb;
+        cursor: not-allowed;
+    }
+
+    .pagination-current {
+        font-weight: 500;
+        color: #500724; /* Pink-950 */
+    }
+
+    /* Footer */
+    footer {
+        background-color: #500724; /* Pink-950 */
+        color: #fce7f3; /* Pink-100 */
+        padding: 3rem 0;
+    }
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-column h3 {
+        color: white;
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-column p {
+        color: #f9a8d4; /* Pink-300 */
+        margin-bottom: 1rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .social-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .social-icon:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+        color: #f9a8d4; /* Pink-300 */
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: white;
+    }
+
+    .footer-bottom {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #831843; /* Pink-900 */
+        text-align: center;
+        color: #f9a8d4; /* Pink-300 */
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .collections-filters {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        nav ul {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+
+        .header-actions .btn-outline {
+            display: none;
+        }
+    }
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container header-container">
+        <a href="/" class="logo">STYLED-BY-TOHFAB</a>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/collections" class="active">Collections</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="menu-toggle">☰</button>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container page-banner-content">
+            <div class="breadcrumbs">
+                <a href="/">Home</a> / <span>Collections</span>
+            </div>
+            <h1 class="page-title">Our Collections</h1>
+            <p>Explore our exquisite fashion designs crafted with passion and precision.</p>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="collections-section">
+        <div class="container">
+            
+
+            
+            <!-- Products Count -->
+<div class="products-count">
+    <p>Showing <%= products.length %> designs</p>
+</div>
+
+<!-- Products Grid -->
+<div class="products-grid">
+    <% products.forEach(product => { %>
+        <div class="product-card">
+            <div class="product-image">
+                
+                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                
+                <% if (product.isNew) { %>
+                    <div class="product-badge">New</div>
+                <% } %>
+            </div>
+            <div class="product-info">
+                    <h3 class="product-name"><%= product.name %></h3>
+              
+                <p class="product-category"><%= product.description %></p>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+
+
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+      <a class="pagination-btn" href="/collections?page=<%= currentPage - 1 %>">Previous</a>
+    <% } else { %>
+      <button class="pagination-btn" disabled>Previous</button>
+    <% } %>
+  
+    <span class="pagination-current">Page <%= currentPage %> of <%= totalPages %></span>
+  
+    <% if (currentPage < totalPages) { %>
+      <a class="pagination-btn" href="/collections?page=<%= currentPage + 1 %>">Next</a>
+    <% } else { %>
+      <button class="pagination-btn" disabled>Next</button>
+    <% } %>
+  </div>
+  
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container footer-container">
+        <div class="footer-column">
+            <h3>TOHFAB</h3>
+            <p>Elegant fashion designs for the modern woman.</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/styled_by_tohfab?igsh=ZDk5a3d1OXlucnRv" class="social-link" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="https://www.tiktok.com/@styled_by_tohfab?_t=ZM-8vhFl6vcxc6&_r=1" class="social-link" aria-label="TiktOk"><i class="fab fa-tiktok fa-2x"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Collections</h3>
+            <ul class="footer-links">
+                <li><a href="/collections.ejs">view collections</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Information</h3>
+            <ul class="footer-links">
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <address>
+                <p>123 Fashion Avenue</p>
+                <p>New York, Lagos</p>
+                <p>Nigeria</p>
+                <p>Email: info@tohfab.com</p>
+                <p>Phone: +234 912 266 6646</p>
+            </address>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> TOHFAB. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Simple toggle for mobile menu
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        const navMenu = document.querySelector('nav ul');
+        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+</script>
+</body>
+</html>

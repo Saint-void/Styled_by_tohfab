@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact TOHFAB - Fashion Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #500724; /* Pink-950 */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #be185d; /* Pink-700 */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #db2777; /* Pink-600 */
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #be185d; /* Pink-700 */
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #db2777; /* Pink-600 */
+            border: 1px solid #fbcfe8; /* Pink-200 */
+        }
+
+        .btn-outline:hover {
+            background-color: #fdf2f8; /* Pink-50 */
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: white;
+            border-bottom: 1px solid #f3f4f6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #db2777; /* Pink-600 */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #500724; /* Pink-950 */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #db2777; /* Pink-600 */
+        }
+
+        nav a.active {
+            color: #db2777; /* Pink-600 */
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Mobile menu toggle */
+        /* Initially hide the navigation links for small screens */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;  /* Hide the navigation links by default on small screens */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;  /* Adjust as needed */
+        left: 0;
+        background-color: #fff;
+        width: 100%;
+        padding: 10px 0;
+        z-index: 1;
+    }
+
+    nav ul.active {
+        display: flex;  /* Show the navigation links when 'active' class is added */
+    }
+
+    .menu-toggle {
+        display: block;  /* Show the menu toggle button on small screens */
+    }
+}
+
+
+        /* Page banner */
+        .page-banner {
+            background-color: #fdf2f8; /* Pink-50 */
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/photos/digital-art-style-illustration-fashion-designer (1).jpg') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .page-banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #db2777; /* Pink-600 */
+        }
+
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #be185d; /* Pink-700 */
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumbs a {
+            color: #db2777; /* Pink-600 */
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact section */
+        .contact-section {
+            padding: 5rem 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        /* Contact form */
+        .contact-form {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #500724; /* Pink-950 */
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #fbcfe8; /* Pink-200 */
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #f472b6; /* Pink-400 */
+            box-shadow: 0 0 0 3px rgba(249, 168, 212, 0.5); /* Pink-300 */
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23db2777' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+        }
+
+        .form-submit {
+            width: 100%;
+        }
+
+        /* Contact info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: #fdf2f8; /* Pink-50 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: #db2777; /* Pink-600 */
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-title {
+            font-weight: 600;
+            color: #500724; /* Pink-950 */
+            margin-bottom: 0.5rem;
+        }
+
+        .info-text {
+            color: #be185d; /* Pink-700 */
+            margin-bottom: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        
+
+        /* Business hours */
+        .hours-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #fbcfe8; /* Pink-200 */
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 500;
+            color: #500724; /* Pink-950 */
+        }
+
+        .time {
+            color: #be185d; /* Pink-700 */
+        }
+
+        /* FAQ section */
+        .faq-section {
+            padding: 5rem 0;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #fbcfe8; /* Pink-200 */
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem;
+            background-color: #fdf2f8; /* Pink-50 */
+            font-weight: 600;
+            color: #500724; /* Pink-950 */
+            cursor: pointer;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: "+";
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #db2777; /* Pink-600 */
+        }
+
+        .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #500724; /* Pink-950 */
+            color: #fce7f3; /* Pink-100 */
+            padding: 3rem 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column p {
+            color: #f9a8d4; /* Pink-300 */
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #f9a8d4; /* Pink-300 */
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #831843; /* Pink-900 */
+            text-align: center;
+            color: #f9a8d4; /* Pink-300 */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-container,
+            .map-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .header-actions .btn-outline {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">STYLED-BY-TOHFAB</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="collections">Collections</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+                <button class="menu-toggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner">
+            <div class="container page-banner-content">
+                <div class="breadcrumbs">
+                    <a href="/">Home</a> / <span>Contact</span>
+                </div>
+                <h1 class="page-title">Contact Us</h1>
+                <p>We'd love to hear from you. Get in touch with our team for any inquiries or appointments.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container contact-container">
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select id="subject" name="subject" class="form-select" required>
+                                <option value="" selected disabled>Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="appointment">Schedule an Appointment</option>
+                                <option value="custom">Custom Design Request</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea id="message" name="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h3 class="info-title">Our Location</h3>
+                            <p class="info-text">123 Fashion Avenue</p>
+                            <p class="info-text">New York, Lagos State</p>
+                            <p class="info-text">Nigeria</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h3 class="info-title">Phone & Email</h3>
+                            <p class="info-text">Phone: +234 91266 6646</p>
+                            <p class="info-text">Email: info@tohfab.com</p>
+                            <p class="info-text">Support: +234 91266 6646</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🕒</div>
+                        <div class="info-content">
+                            <h3 class="info-title">Business Hours</h3>
+                            <ul class="hours-list">
+                                <li class="hours-item">
+                                    <span class="day">Monday - Friday</span>
+                                    <span class="time">9:00 AM - 6:00 PM</span>
+                                </li>
+                                <li class="hours-item">
+                                    <span class="day">Saturday</span>
+                                    <span class="time">10:00 AM - 4:00 PM</span>
+                                </li>
+                                <li class="hours-item">
+                                    <span class="day">Sunday</span>
+                                    <span class="time">Closed</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fab fa-whatsapp fa-2x"></i></div>
+                        <div class="info-content">
+                            <h3 class="info-title">Connect With Us</h3>
+                            <p class="info-text">Follow us on social media for the latest updates, behind-the-scenes content, and fashion inspiration.</p>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/styled_by_tohfab?igsh=ZDk5a3d1OXlucnRv" class="social-link" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a href="https://www.tiktok.com/@styled_by_tohfab?_t=ZM-8vhFl6vcxc6&_r=1" class="social-link" aria-label="TiktOk"><i class="fab fa-tiktok fa-2x"></i></a>
+                                <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-x fa-2x"></i></a>
+                                <a href="#" class="social-link" aria-label="Pinterest">📌</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find answers to common questions about our services and policies.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">Do you offer custom design services?</div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer custom design services for special occasions, bridal wear, and personalized pieces. Please contact us to schedule a consultation with our designer to discuss your vision and requirements.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How can I schedule a fitting appointment?</div>
+                        <div class="faq-answer">
+                            <p>You can schedule a fitting appointment by calling our studio at +1 (555) 123-4567 or by filling out the contact form on this page. Please provide your preferred date and time, and we'll confirm your appointment based on availability.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">What is your return policy?</div>
+                        <div class="faq-answer">
+                            <p>We accept returns within 14 days of delivery for unworn items in their original condition with tags attached. Custom-made pieces are non-returnable. Please contact our customer service team for more information about our return process.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Do you offer alterations for purchased items?</div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer alterations for all purchased items to ensure a perfect fit. Basic alterations are complimentary, while more extensive modifications may incur additional charges. Please contact us to schedule an alteration appointment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>TOHFAB</h3>
+                <p>Elegant fashion designs for the modern woman.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/styled_by_tohfab?igsh=ZDk5a3d1OXlucnRv" class="social-link" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="https://www.tiktok.com/@styled_by_tohfab?_t=ZM-8vhFl6vcxc6&_r=1" class="social-link" aria-label="TiktOk"><i class="fab fa-tiktok fa-2x"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Collections</h3>
+                <ul class="footer-links">
+                    <li><a href="/collections">view collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <address>
+                    <p>123 Fashion Avenue</p>
+                    <p>New York, Lagos</p>
+                    <p>Nigeria</p>
+                    <p>Email: info@tohfab.com</p>
+                    <p>Phone: +234 912 266 6646</p>
+                </address>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TOHFAB. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to toggle FAQ answers
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                answer.style.display = isVisible ? 'none' : 'block';
+                question.style.borderBottomLeftRadius = isVisible ? '0.5rem' : '0';
+                question.style.borderBottomRightRadius = isVisible ? '0.5rem' : '0';
+                question.style.borderBottom = isVisible ? 'none' : '1px solid #fbcfe8';
+                question.style.fontWeight = isVisible ? '600' : '700';
+                
+                // Change the plus sign to minus and vice versa
+                if (isVisible) {
+                    question.style.setProperty('--content', '"+');
+                } else {
+                    question.style.setProperty('--content', '"-');
+                }
+            });
+        });
+
+        // Hide all answers initially
+        document.querySelectorAll('.faq-answer').forEach(answer => {
+            answer.style.display = 'none';
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('active');
+    });
+});
+
+    </script>
+</body>
+</html>

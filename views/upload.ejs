@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Product</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fdf2f8; /* Pink-50 */
+      padding: 2rem;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Typography */
+    h1, h2 {
+      font-weight: 700;
+      line-height: 1.2;
+      color: #500724; /* Pink-950 */
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Layout */
+    .form-preview-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* Form styles */
+    .form-container {
+      padding-right: 1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #fbcfe8; /* Pink-200 */
+      border-radius: 0.25rem;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #f472b6; /* Pink-400 */
+      box-shadow: 0 0 0 3px rgba(249, 168, 212, 0.5); /* Pink-300 */
+    }
+
+    /* File input styling */
+    .file-input-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px dashed #fbcfe8; /* Pink-200 */
+      border-radius: 0.25rem;
+      background-color: #fdf2f8; /* Pink-50 */
+      cursor: pointer;
+    }
+
+    input[type="file"]::file-selector-button {
+      background-color: #db2777; /* Pink-600 */
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      margin-right: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      background-color: #be185d; /* Pink-700 */
+    }
+
+    /* Checkbox styling */
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 1px solid #fbcfe8; /* Pink-200 */
+      border-radius: 0.25rem;
+      background-color: white;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: #db2777; /* Pink-600 */
+      border-color: #db2777; /* Pink-600 */
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 0.75rem;
+    }
+
+    label {
+      font-weight: 500;
+      color: #500724; /* Pink-950 */
+      cursor: pointer;
+    }
+
+    /* Button styling */
+    button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #db2777; /* Pink-600 */
+      color: white;
+      border: none;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #be185d; /* Pink-700 */
+    }
+
+    /* Link styling */
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #db2777; /* Pink-600 */
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #be185d; /* Pink-700 */
+      text-decoration: underline;
+    }
+
+    /* File attachment component styling */
+    .file-attachment {
+      border: 1px solid #fbcfe8; /* Pink-200 */
+      border-radius: 0.25rem;
+      padding: 1rem;
+      margin-top: 0.5rem;
+      background-color: #fdf2f8; /* Pink-50 */
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .file-attachment-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #db2777; /* Pink-600 */
+      font-size: 1.25rem;
+    }
+
+    .file-attachment-info {
+      flex: 1;
+    }
+
+    .file-attachment-name {
+      font-weight: 500;
+      color: #500724; /* Pink-950 */
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .file-attachment-size {
+      font-size: 0.875rem;
+      color: #be185d; /* Pink-700 */
+    }
+
+    .file-attachment-remove {
+      background: none;
+      border: none;
+      color: #db2777; /* Pink-600 */
+      cursor: pointer;
+      padding: 0.25rem;
+      margin: 0;
+      width: auto;
+    }
+
+    /* Preview section */
+    .preview-container {
+      border-left: 1px solid #fbcfe8; /* Pink-200 */
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .preview-card {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      background-color: white;
+      margin-top: 1rem;
+    }
+
+    .preview-image-container {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .preview-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preview-placeholder {
+      color: #be185d; /* Pink-700 */
+      font-size: 1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .preview-new-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #db2777; /* Pink-600 */
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      z-index: 10;
+      display: none;
+    }
+
+    .preview-content {
+      padding: 1.5rem;
+    }
+
+    .preview-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #500724; /* Pink-950 */
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-description {
+      color: #6b7280;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .container {
+        width: 100%;
+        padding: 1.5rem;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .form-preview-container {
+        grid-template-columns: 1fr;
+      }
+
+      .form-container {
+        padding-right: 0;
+      }
+
+      .preview-container {
+        border-left: none;
+        border-top: 1px solid #fbcfe8; /* Pink-200 */
+        padding-left: 0;
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Upload New Product</h1>
+    
+    <div class="form-preview-container">
+      <!-- Form Section -->
+      <div class="form-container">
+        <form action="/upload-product" method="POST" enctype="multipart/form-data" id="productForm">
+          <div>
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" placeholder="Product Name" required>
+          </div>
+          
+          <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Description" required></textarea>
+          </div>
+          
+          
+          <div class="file-input-container">
+            <label for="image">Product Image</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+            
+            <div class="file-attachment" style="display: none;">
+              <div class="file-attachment-icon">📷</div>
+              <div class="file-attachment-info">
+                <div class="file-attachment-name">product-image.jpg</div>
+                <div class="file-attachment-size">1.2 MB</div>
+              </div>
+              <button type="button" class="file-attachment-remove">✕</button>
+            </div>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="isNew" name="isNew">
+            <label for="isNew">Is New?</label>
+          </div>
+          
+          <button type="submit">Upload Product</button>
+        </form>
+        <a href="/collections">View Collections</a>
+      </div>
+      
+      <!-- Preview Section -->
+      <div class="preview-container">
+        <h2>Product Preview</h2>
+        <div class="preview-card">
+          <div class="preview-image-container">
+            <div class="preview-placeholder">Product image will appear here</div>
+            <img class="preview-image" style="display: none;" alt="Product preview">
+            <div class="preview-new-badge">New</div>
+          </div>
+          <div class="preview-content">
+            <div class="preview-name">Product Name</div>
+            <div class="preview-description">Product description will appear here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get form elements
+    const form = document.getElementById('productForm');
+    const nameInput = document.getElementById('name');
+    const descriptionInput = document.getElementById('description');
+    const imageInput = document.getElementById('image');
+    const isNewCheckbox = document.getElementById('isNew');
+    
+    // Get file attachment elements
+    const fileAttachment = document.querySelector('.file-attachment');
+    const fileAttachmentName = document.querySelector('.file-attachment-name');
+    const fileAttachmentSize = document.querySelector('.file-attachment-size');
+    const fileAttachmentRemove = document.querySelector('.file-attachment-remove');
+    
+    // Get preview elements
+    const previewName = document.querySelector('.preview-name');
+    const previewDescription = document.querySelector('.preview-description');
+    const previewImage = document.querySelector('.preview-image');
+    const previewPlaceholder = document.querySelector('.preview-placeholder');
+    const previewNewBadge = document.querySelector('.preview-new-badge');
+    
+    // Update preview when form inputs change
+    nameInput.addEventListener('input', updatePreview);
+    descriptionInput.addEventListener('input', updatePreview);
+    isNewCheckbox.addEventListener('change', updatePreview);
+    
+    // Handle file input change
+    imageInput.addEventListener('change', function() {
+      if (this.files.length > 0) {
+        const file = this.files[0];
+        
+        // Update file attachment display
+        fileAttachmentName.textContent = file.name;
+        fileAttachmentSize.textContent = formatFileSize(file.size);
+        fileAttachment.style.display = 'flex';
+        
+        // Update image preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewImage.src = e.target.result;
+          previewImage.style.display = 'block';
+          previewPlaceholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Handle file attachment remove button
+    fileAttachmentRemove.addEventListener('click', function() {
+      imageInput.value = '';
+      fileAttachment.style.display = 'none';
+      previewImage.style.display = 'none';
+      previewPlaceholder.style.display = 'block';
+    });
+    
+    // Function to update the preview
+    function updatePreview() {
+      // Update product name
+      previewName.textContent = nameInput.value || 'Product Name';
+      
+      // Update product description
+      previewDescription.textContent = descriptionInput.value || 'Product description will appear here.';
+      
+      
+      // Update "New" badge
+      previewNewBadge.style.display = isNewCheckbox.checked ? 'block' : 'none';
+    }
+    
+    // Format file size for display
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' bytes';
+      else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      else return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+    
+    // Initialize preview
+    updatePreview();
+  </script>
+</body>
+</html>

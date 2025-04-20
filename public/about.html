@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About TOHFAB - Fashion Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #500724; /* Pink-950 */
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #be185d; /* Pink-700 */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #db2777; /* Pink-600 */
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #be185d; /* Pink-700 */
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #db2777; /* Pink-600 */
+            border: 1px solid #fbcfe8; /* Pink-200 */
+        }
+
+        .btn-outline:hover {
+            background-color: #fdf2f8; /* Pink-50 */
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: white;
+            border-bottom: 1px solid #f3f4f6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #db2777; /* Pink-600 */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #500724; /* Pink-950 */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #db2777; /* Pink-600 */
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        
+
+        /* Mobile menu toggle */
+        /* Initially hide the navigation links for small screens */
+       /* Initially hide the navigation links for small screens */
+       nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;  /* Hide the navigation links by default on small screens */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;  /* Adjust as needed */
+        left: 0;
+        background-color: #fff;
+        width: 100%;
+        padding: 10px 0;
+        z-index: 1;
+    }
+
+    nav ul.active {
+        display: flex;  /* Show the navigation links when 'active' class is added */
+    }
+
+    .menu-toggle {
+        display: block;  /* Show the menu toggle button on small screens */
+    }
+}
+
+
+        /* Page banner */
+        .page-banner {
+            background-color: #fdf2f8; /* Pink-50 */
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/photos/digital-art-style-illustration-fashion-designer (1).jpg') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .page-banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #db2777; /* Pink-600 */
+        }
+
+        .breadcrumbs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #be185d; /* Pink-700 */
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumbs a {
+            color: #db2777; /* Pink-600 */
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        /* Designer bio section */
+        .designer-bio {
+            padding: 5rem 0;
+        }
+
+        .bio-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .bio-image {
+            position: relative;
+        }
+
+        .bio-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .bio-image::before {
+            content: "";
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fbcfe8; /* Pink-200 */
+            border-radius: 0.5rem;
+            z-index: -1;
+        }
+
+        .bio-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .bio-name {
+            font-size: 2.5rem;
+            color: #db2777; /* Pink-600 */
+        }
+
+        .bio-title {
+            font-size: 1.25rem;
+            color: #be185d; /* Pink-700 */
+            font-weight: 500;
+            margin-top: -1rem;
+        }
+
+        .bio-signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            color: #db2777; /* Pink-600 */
+            margin-top: 1rem;
+        }
+
+        /* Philosophy section */
+        .philosophy {
+            padding: 5rem 0;
+            background-color: #fdf2f8; /* Pink-50 */
+        }
+
+        .philosophy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-icon {
+            font-size: 3rem;
+            color: #f9a8d4; /* Pink-300 */
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #be185d; /* Pink-700 */
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Journey section */
+        .journey {
+            padding: 5rem 0;
+        }
+
+        .journey-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #fbcfe8; /* Pink-200 */
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2.5rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #db2777; /* Pink-600 */
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: #db2777; /* Pink-600 */
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team section */
+        .team {
+            padding: 5rem 0;
+            background-color: #fdf2f8; /* Pink-50 */
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 3px solid #fbcfe8; /* Pink-200 */
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-weight: 700;
+            color: #500724; /* Pink-950 */
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: #db2777; /* Pink-600 */
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .testimonial-author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-author-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-author-info p {
+            font-size: 0.875rem;
+            margin-bottom: 0;
+        }
+
+        /* Contact section */
+        .contact {
+            padding: 5rem 0;
+            background-color: #fce7f3; /* Pink-100 */
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 4rem;
+            height: 4rem;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #db2777; /* Pink-600 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .contact-info {
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #500724; /* Pink-950 */
+            color: #fce7f3; /* Pink-100 */
+            padding: 3rem 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column p {
+            color: #f9a8d4; /* Pink-300 */
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #f9a8d4; /* Pink-300 */
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #831843; /* Pink-900 */
+            text-align: center;
+            color: #f9a8d4; /* Pink-300 */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .bio-container {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-image::before {
+                display: none;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .header-actions .btn-outline {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0;
+                padding-left: 2.5rem;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) {
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::before {
+                left: -10px;
+            }
+
+            .timeline-item:nth-child(odd)::before {
+                right: auto;
+                left: -10px;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">STYLED-BY-TOHFAB</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/collections">Collections</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="menu-toggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Banner -->
+        <section class="page-banner">
+            <div class="container page-banner-content">
+                <div class="breadcrumbs">
+                    <a href="/">Home</a> / <span>About</span>
+                </div>
+                <h1 class="page-title">About STYLED-BY-TOHFAB</h1>
+                <p>Discover the story, philosophy, and people behind our fashion brand</p>
+            </div>
+        </section>
+
+        <!-- Designer Bio Section -->
+        <section class="designer-bio">
+            <div class="container bio-container">
+                <div class="bio-image">
+                    <img src="/photos/author.jpg" alt="Fashion Designer Portrait">
+                </div>
+                <div class="bio-content">
+                    <h2 class="bio-name">Oduloye Hadijat Bolajoko</h2>
+                    <p class="bio-title">Founder & Creative Director</p>
+                    <p>With over 15 years of experience in the fashion industry, Oduloye Hadijat Bolajoko has established herself as a visionary designer known for her elegant and timeless creations.</p>
+                    <p>After graduating from the prestigious Fashion Institute of Design, she worked with several renowned fashion houses before launching her own label, STYLED-BY-TOHFAB, in 2010.</p>
+                    <p>Her designs have been featured in Vogue, Elle, and Harper's Bazaar, and have been worn by celebrities on red carpets around the world.</p>
+                    <p class="bio-signature">Oduloye Hadijat Bolajoko</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy">
+            <div class="container philosophy-container">
+                <div class="philosophy-icon">✨</div>
+                <h2>Our Philosophy</h2>
+                <p class="philosophy-quote">"Fashion is not just about creating beautiful clothes; it's about empowering women to feel confident, elegant, and true to themselves. Every piece I design is a celebration of femininity and individuality."</p>
+                <p>At STYLED-BY-TOHFAB, we believe in sustainable fashion that stands the test of time. Our designs combine classic elegance with contemporary elements, creating pieces that are both timeless and modern.</p>
+                <p>We are committed to ethical production practices and use only the finest materials sourced from responsible suppliers. Each garment is meticulously crafted with attention to detail, ensuring exceptional quality and fit.</p>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="journey">
+            <div class="container journey-container">
+                <div class="journey-header">
+                    <h2>Our Journey</h2>
+                    <p>The evolution of TOHFAB from a small studio to an internationally recognized fashion brand</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2010</div>
+                        <h3 class="timeline-title">The Beginning</h3>
+                        <p>TOHFAB was founded in a small studio in New York City with a collection of just 12 pieces.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2013</div>
+                        <h3 class="timeline-title">First Flagship Store</h3>
+                        <p>Opened our first flagship store in SoHo, New York, showcasing our expanding collection.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015</div>
+                        <h3 class="timeline-title">International Expansion</h3>
+                        <p>Expanded to international markets with boutiques in Paris and London.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2018</div>
+                        <h3 class="timeline-title">Sustainable Initiative</h3>
+                        <p>Launched our sustainable fashion initiative, committing to eco-friendly practices.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020</div>
+                        <h3 class="timeline-title">Digital Transformation</h3>
+                        <p>Enhanced our digital presence to connect with customers worldwide.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023</div>
+                        <h3 class="timeline-title">Today</h3>
+                        <p>Continuing to innovate and inspire with our designs, reaching fashion enthusiasts globally.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="testimonials-header">
+                    <h2>What People Say</h2>
+                    <p>Testimonials from fashion critics and loyal customers</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial">
+                        <p class="testimonial-text">TOHFAB designs embody elegance and sophistication. Each piece tells a story and makes a statement without saying a word.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-image">
+                                <img src="https://placehold.co/100x100/fce7f3/db2777?text=E" alt="Emily Watson">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Emily Watson</h4>
+                                <p>Fashion Editor, Style Magazine</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-text">I've been wearing TOHFAB for years. The quality is exceptional, and the designs are timeless yet contemporary.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-image">
+                                <img src="https://placehold.co/100x100/fce7f3/db2777?text=J" alt="Jessica Miller">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Jessica Miller</h4>
+                                <p>Loyal Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-text">What sets TOHFAB apart is the attention to detail and the perfect fit. Their designs make you feel like they were made just for you.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-image">
+                                <img src="https://placehold.co/100x100/fce7f3/db2777?text=R" alt="Robert Chen">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>Robert Chen</h4>
+                                <p>Fashion Blogger</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <div class="container contact-container">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you. Reach out to us with any questions or inquiries.</p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p class="contact-info">info@tohfab.com</p>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p class="contact-info">+234 91266 6646</p>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📍</div>
+                        <h3>Visit</h3>
+                        <p class="contact-info">123 Fashion Avenue, New York</p>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>TOHFAB</h3>
+                <p>Elegant fashion designs for the modern woman.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/styled_by_tohfab?igsh=ZDk5a3d1OXlucnRv" class="social-link" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="https://www.tiktok.com/@styled_by_tohfab?_t=ZM-8vhFl6vcxc6&_r=1" class="social-link" aria-label="TiktOk"><i class="fab fa-tiktok fa-2x"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Collections</h3>
+                <ul class="footer-links">
+                    <li><a href="/collections.ejs">view collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <address>
+                    <p>123 Fashion Avenue</p>
+                    <p>New York, Lagos</p>
+                    <p>Nigeria</p>
+                    <p>Email: info@tohfab.com</p>
+                    <p>Phone: +234 912 266 6646</p>
+                </address>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> TOHFAB. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    menuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('active');
+    });
+});
+
+    </script>
+</body>
+</html>
