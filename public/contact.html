@@ -571,7 +571,7 @@ nav ul li {
                 <div class="contact-form">
                     <h2>Send Us a Message</h2>
                     <p>Fill out the form below and we'll get back to you as soon as possible.</p>
-                    <form action="#" method="POST">
+                    <form id="whatsappForm">
                         <div class="form-group">
                             <label for="name" class="form-label">Your Name</label>
                             <input type="text" id="name" name="name" class="form-input" required>
@@ -599,6 +599,7 @@ nav ul li {
                             <label for="message" class="form-label">Your Message</label>
                             <textarea id="message" name="message" class="form-textarea" required></textarea>
                         </div>
+                        <p>Note: This will redirect you to WhatsApp after form is filled</p>
                         <button type="submit" class="btn btn-primary form-submit">Send Message</button>
                     </form>
                 </div>
@@ -620,7 +621,7 @@ nav ul li {
                             <h3 class="info-title">Phone & Email</h3>
                             <p class="info-text">Phone: +234 91266 6646</p>
                             <p class="info-text">Email: info@tohfab.com</p>
-                            <p class="info-text">Support: +234 91266 6646</p>
+                            <p class="info-text">Support: +234 912 266 6646</p>
                         </div>
                     </div>
                     <div class="info-card">
@@ -740,6 +741,34 @@ nav ul li {
     </footer>
 
     <script>
+      
+        document.getElementById("whatsappForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value.trim();
+
+            // WhatsApp message format
+            const fullMessage = 
+            `Hello!%0A%0A` +
+            `*Name:* ${name}%0A` +
+            `*Email:* ${email}%0A` +
+            (phone ? `*Phone:* ${phone}%0A` : "") +
+            `*Subject:* ${subject}%0A` +
+            `*Message:* ${message}`;
+
+            // Your WhatsApp number (no +, no leading 0, use country code)
+            const phoneNumber = "2349122666646"; // Replace with your actual number
+
+            // Open WhatsApp chat
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${fullMessage}`;
+            window.open(whatsappURL, "_blank");
+        });
+
         // Simple script to toggle FAQ answers
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
