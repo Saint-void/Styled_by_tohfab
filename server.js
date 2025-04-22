@@ -2,18 +2,38 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const path = require('path');
+require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const app = express();
 
-// ✅ Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://Efe:Donaldefe1.@void.jrk6kbe.mongodb.net/fashion', {
+// ✅ MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://Efe:Donaldefe1.@void.jrk6kbe.mongodb.net/fashion', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('✅ Connected to MongoDB'))
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
-// ✅ Product Schema & Model
+// ✅ Cloudinary Config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// ✅ Cloudinary Storage
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'styled-by-tohfab',
+    allowed_formats: ['jpg', 'png', 'jpeg'],
+  },
+});
+const upload = multer({ storage });
+
+// ✅ Mongoose Model
 const ProductSchema = new mongoose.Schema({
   name: String,
   description: String,
@@ -21,24 +41,15 @@ const ProductSchema = new mongoose.Schema({
   imageUrl: String,
   isNew: Boolean,
 });
-
 const Product = mongoose.model('Product', ProductSchema, 'Product');
 
 // ✅ Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ✅ EJS setup
+// ✅ EJS Setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-// ✅ Multer setup for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage });
 
 // ✅ Routes
 
@@ -47,17 +58,16 @@ app.get('/upload', (req, res) => {
   res.render('upload');
 });
 
-// Handle image + product upload
+// Handle product + image upload
 app.post('/upload-product', upload.single('image'), async (req, res) => {
   try {
     const { name, description, price, isNew } = req.body;
-    const imageUrl = '/uploads/' + req.file.filename;
 
     const newProduct = new Product({
       name,
       description,
       price,
-      imageUrl,
+      imageUrl: req.file.path, // Cloudinary returns a URL
       isNew: isNew === 'on'
     });
 
@@ -69,7 +79,7 @@ app.post('/upload-product', upload.single('image'), async (req, res) => {
   }
 });
 
-// ✅ Show all products with pagination (NEWEST first)
+// Products page with pagination
 app.get('/collections', async (req, res) => {
   try {
     const perPage = 6;
@@ -79,7 +89,7 @@ app.get('/collections', async (req, res) => {
     const totalPages = Math.ceil(totalProducts / perPage);
 
     const products = await Product.find()
-      .sort({ _id: -1 }) // 👈 Show newest uploads first
+      .sort({ _id: -1 })
       .skip((page - 1) * perPage)
       .limit(perPage);
 
@@ -99,7 +109,7 @@ app.get('/', (req, res) => {
   res.redirect('/collections');
 });
 
-// ✅ Start server
+// ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
