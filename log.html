@@ -1,0 +1,21 @@
+ <div class="login-container">
+        <h2>Admin Login</h2>
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="checkLogin()">Login</button>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        function checkLogin() {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let errorMessage = document.getElementById("error-message");
+
+            if (email === "tohfab" && password === "bolatohfab") {
+                window.location.href = "views/upload.ejs"; // Redirect on success
+            } else {
+                errorMessage.textContent = "Don,t attepmt";
+            }
+        }
+    </script>
